@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:travelplanning/Screens/DetailPage.dart';
 import 'package:travelplanning/Screens/HomePage.dart';
+import 'package:travelplanning/Screens/signIn.dart';
 
 
 Future<void> main() async {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: DetailPage(),
     );
   }
 }
