@@ -17,7 +17,7 @@ class UserModel {
   }
 
   //sending data to our server
-  Map<String, dynamic> topMap() {
+  Map<String, dynamic> toMap() {
     return {
       'uid': uid,
       'email': email,

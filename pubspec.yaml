@@ -32,9 +32,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.6.3
   firebase_core: ^2.14.0
+  firebase_storage: ^11.2.3
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.7
   fluttertoast: ^8.2.2
+  line_awesome_flutter: ^2.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -58,7 +61,6 @@ flutter:
     - img/mountains/
     - img/waterfall/
     - img/lake/
-    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
