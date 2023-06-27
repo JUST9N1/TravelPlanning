@@ -1,6 +1,9 @@
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
+import 'package:travelplanning/Screens/navpages/search_page.dart';
 import 'package:travelplanning/widgets/app_large_text.dart';
 import 'package:travelplanning/widgets/app_text.dart';
+import 'package:travelplanning/widgets/firebaseImages.dart';
 
 import '../misc/colors.dart';
 
@@ -12,13 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  var images = {
-    "baudha.jpg": "Baudha",
-    "janakpur.jpg": "Janakpur",
-    "Pashupati.png": "Pashupati",
-    "Swyambu.png": "Swyambu",
-    "patan-durbar.jpg": "Patan-Square"
-  };
+
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 4, vsync: this);
@@ -28,25 +25,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       children: [
         // menu text
         Container(
-          padding: const EdgeInsets.only(top: 70, left: 20),
+          padding: const EdgeInsets.only(top: 65, left: 20),
           child: Row(
             children: [
-              const Icon(
-                Icons.menu,
-                size: 30,
-                color: Colors.black54,
-              ),
+              Container(child: AppLargeText(text: "Greetings!!")),
               Expanded(child: Container()),
-              Container(
-                  margin: const EdgeInsets.only(right: 20),
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey.withOpacity(0.5),
-                  )),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SearchPage(),
+                        ));
+                  },
+                  icon: const Icon(Icons.search)),
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.notifications))
             ],
           ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(left: 25),
+          child: AppText(text: "Sujan Gautam"),
         ),
         const SizedBox(
           height: 25,
@@ -85,85 +85,240 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           padding: const EdgeInsets.only(left: 20),
           height: 300,
           width: double.maxFinite,
-          child: 
-          TabBarView(
+          child: TabBarView(
             controller: tabController,
             children: [
-              
-              // Heritage part
+              // Heritage Part
               ListView.builder(
-                itemCount: 4,
+                itemCount: heritageImages.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                      margin: const EdgeInsets.only(right: 15, top: 10),
-                      width: 200,
-                      height: 300,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
-                          image: const DecorationImage(
-                              image: AssetImage("img/heritage/baudha.jpg"),
-                              fit: BoxFit.cover)));
+                  final imageName = heritageImages.keys.elementAt(index);
+                  final imageUrl =
+                      'gs://travelplanning-64738.appspot.com/heritage/$imageName';
+
+                  return FutureBuilder(
+                    future: firebase_storage.FirebaseStorage.instance
+                        .refFromURL(imageUrl)
+                        .getDownloadURL(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done &&
+                          snapshot.hasData) {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            image: DecorationImage(
+                              image: NetworkImage(snapshot.data!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          child: const Center(
+                            child: Text('Error loading image'),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                    },
+                  );
                 },
               ),
-              
-              //  Heritage Part
-                  ListView.builder(
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        margin: const EdgeInsets.only(right: 15, top: 10),
-                        width: 200,
-                        height: 300,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                            image: const DecorationImage(
-                                image: AssetImage("img/mountains/Everest.jpeg"),
-                                fit: BoxFit.cover)),
-                      );
-                    },
-                  ),
-                
-              // Lake Part
-              ListView.builder(
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        margin: const EdgeInsets.only(right: 15, top: 10),
-                        width: 200,
-                        height: 300,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                            image: const DecorationImage(
-                                image: AssetImage("img/lake/shey_phoksundo.jpg"),
-                                fit: BoxFit.cover)),
-                      );
-                    },
-                  ),
 
-              // Waterfall Part
+// Mountain Part
               ListView.builder(
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        margin: const EdgeInsets.only(right: 15, top: 10),
-                        width: 200,
-                        height: 300,
-                        decoration: BoxDecoration(
+                itemCount: mountainImages.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  final imageName2 = mountainImages.keys.elementAt(index);
+                  var imageUrl =
+                      'gs://travelplanning-64738.appspot.com/mountains/$imageName2';
+
+                  return FutureBuilder(
+                    future: firebase_storage.FirebaseStorage.instance
+                        .refFromURL(imageUrl)
+                        .getDownloadURL(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done &&
+                          snapshot.hasData) {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
-                            image: const DecorationImage(
-                                image: AssetImage("img/waterfall/davis_fall.jpg"),
-                                fit: BoxFit.cover)),
-                      );
+                            image: DecorationImage(
+                              image: NetworkImage(snapshot.data!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          child: const Center(
+                            child: Text('Error loading image'),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
                     },
-                  ),
+                  );
+                },
+              ),
+
+// Lake Part
+              ListView.builder(
+                itemCount: lakeImages.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  final imageName = lakeImages.keys.elementAt(index);
+                  final imageUrl =
+                      'gs://travelplanning-64738.appspot.com/lake/$imageName';
+
+                  return FutureBuilder(
+                    future: firebase_storage.FirebaseStorage.instance
+                        .refFromURL(imageUrl)
+                        .getDownloadURL(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done &&
+                          snapshot.hasData) {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            image: DecorationImage(
+                              image: NetworkImage(snapshot.data!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          child: const Center(
+                            child: Text('Error loading image'),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                    },
+                  );
+                },
+              ),
+
+// Waterfall Part
+              ListView.builder(
+                itemCount: waterfallImages.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  final imageName = waterfallImages.keys.elementAt(index);
+                  final imageUrl =
+                      'gs://travelplanning-64738.appspot.com/waterfall/$imageName';
+
+                  return FutureBuilder(
+                    future: firebase_storage.FirebaseStorage.instance
+                        .refFromURL(imageUrl)
+                        .getDownloadURL(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done &&
+                          snapshot.hasData) {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            image: DecorationImage(
+                              image: NetworkImage(snapshot.data!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          child: const Center(
+                            child: Text('Error loading image'),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          margin: const EdgeInsets.only(right: 15, top: 10),
+                          width: 200,
+                          height: 300,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                    },
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -186,43 +341,71 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         const SizedBox(
           height: 10,
         ),
+        //modified code:
+
         Container(
-            height: 120,
-            width: double.maxFinite,
-            margin: const EdgeInsets.only(left: 20),
-            child: ListView.builder(
-                itemCount: 5,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (_, index) {
-                  return Container(
-                    margin: const EdgeInsets.only(right: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            // margin: const EdgeInsets.only(right: 50),
+          height: 120,
+          width: double.maxFinite,
+          margin: const EdgeInsets.only(left: 20),
+          child: ListView.builder(
+            itemCount: topDestinationImages.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              final imageName = topDestinationImages.keys.elementAt(index);
+              final imageUrl =
+                  'gs://travelplanning-64738.appspot.com/topDestination/$imageName';
+
+              return FutureBuilder<String>(
+                future: firebase_storage.FirebaseStorage.instance
+                    .refFromURL(imageUrl)
+                    .getDownloadURL(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // Display a placeholder or loading indicator while fetching the URL
+                    return CircularProgressIndicator();
+                  }
+                  if (snapshot.hasError) {
+                    // Handle the error if URL retrieval fails
+                    return Text('Error retrieving image URL');
+                  }
+                  if (snapshot.hasData) {
+                    String httpsUrl = snapshot.data!;
+                    return Container(
+                      margin: const EdgeInsets.only(right: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
                             width: 80,
                             height: 80,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        "img/heritage/${images.keys.elementAt(index)}"),
-                                    fit: BoxFit.cover))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          child: AppText(
-                            text: images.values.elementAt(index),
-                            color: AppColors.textColor2,
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              image: DecorationImage(
+                                image: NetworkImage(httpsUrl),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                  );
-                }))
+                          const SizedBox(height: 10),
+                          Container(
+                            child: AppText(
+                              text:
+                                  topDestinationImages.values.elementAt(index),
+                              color: AppColors.textColor2,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  // Handle other snapshot states if necessary
+                  return Container();
+                },
+              );
+            },
+          ),
+        )
       ],
     ));
   }
