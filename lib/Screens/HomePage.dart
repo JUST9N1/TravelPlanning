@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
+import 'package:travelplanning/Screens/DetailPage.dart';
 import 'package:travelplanning/Screens/navpages/search_page.dart';
 import 'package:travelplanning/widgets/app_large_text.dart';
 import 'package:travelplanning/widgets/app_text.dart';
@@ -89,61 +91,70 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             controller: tabController,
             children: [
               // Heritage Part
-              ListView.builder(
-                itemCount: heritageImages.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  final imageName = heritageImages.keys.elementAt(index);
-                  final imageUrl =
-                      'gs://travelplanning-64738.appspot.com/heritage/$imageName';
-
-                  return FutureBuilder(
-                    future: firebase_storage.FirebaseStorage.instance
-                        .refFromURL(imageUrl)
-                        .getDownloadURL(),
-                    builder:
-                        (BuildContext context, AsyncSnapshot<String> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done &&
-                          snapshot.hasData) {
-                        return Container(
-                          margin: const EdgeInsets.only(right: 15, top: 10),
-                          width: 200,
-                          height: 300,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                            image: DecorationImage(
-                              image: NetworkImage(snapshot.data!),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Container(
-                          margin: const EdgeInsets.only(right: 15, top: 10),
-                          width: 200,
-                          height: 300,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                          ),
-                          child: const Center(
-                            child: Text('Error loading image'),
-                          ),
-                        );
-                      } else {
-                        return Container(
-                          margin: const EdgeInsets.only(right: 15, top: 10),
-                          width: 200,
-                          height: 300,
-                          child: const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-                    },
-                  );
+              GestureDetector(
+                onTap: () {
+                   Navigator.pushAndRemoveUntil(
+                            (context),
+                            MaterialPageRoute(
+                                builder: (context) => const DetailPage()),
+                            (route) => false);
                 },
+                child: ListView.builder(
+                  itemCount: heritageImages.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    final imageName = heritageImages.keys.elementAt(index);
+                    final imageUrl =
+                        'gs://travelplanning-64738.appspot.com/heritage/$imageName';
+              
+                    return FutureBuilder(
+                      future: firebase_storage.FirebaseStorage.instance
+                          .refFromURL(imageUrl)
+                          .getDownloadURL(),
+                      builder:
+                          (BuildContext context, AsyncSnapshot<String> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done &&
+                            snapshot.hasData) {
+                          return Container(
+                            margin: const EdgeInsets.only(right: 15, top: 10),
+                            width: 200,
+                            height: 300,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              image: DecorationImage(
+                                image: NetworkImage(snapshot.data!),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Container(
+                            margin: const EdgeInsets.only(right: 15, top: 10),
+                            width: 200,
+                            height: 300,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            child: const Center(
+                              child: Text('Error loading image'),
+                            ),
+                          );
+                        } else {
+                          return Container(
+                            margin: const EdgeInsets.only(right: 15, top: 10),
+                            width: 200,
+                            height: 300,
+                            child: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
+                      },
+                    );
+                  },
+                ),
               ),
 
 // Mountain Part

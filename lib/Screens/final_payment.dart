@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:travelplanning/Screens/Payment.dart';
+import 'package:travelplanning/Screens/Payment.dart';
 
 class FinalPayment extends StatelessWidget {
   const FinalPayment({Key? key}) : super(key: key);
@@ -106,11 +106,11 @@ class FinalPayment extends StatelessWidget {
                     height: 48,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.pushAndRemoveUntil(
-                        //     (context),
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const Payment()),
-                        //     (route) => false);
+                        Navigator.pushAndRemoveUntil(
+                            (context),
+                            MaterialPageRoute(
+                                builder: (context) => const Payment()),
+                            (route) => false);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
