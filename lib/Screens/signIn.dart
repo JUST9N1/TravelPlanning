@@ -460,8 +460,6 @@ class _LoginPageState extends State<LoginPage> {
 
               })
 
-          // ignore: body_might_complete_normally_catch_error
-
           .catchError((e) {
 
         Fluttertoast.showToast(msg: e!.message);
