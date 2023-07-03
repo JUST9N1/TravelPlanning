@@ -383,7 +383,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       ),
 
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 15),
 
                       loginButton,
 
@@ -459,6 +459,7 @@ class _LoginPageState extends State<LoginPage> {
                     MaterialPageRoute(builder: (context) => const MainPage())),
 
               })
+
 
           .catchError((e) {
 
