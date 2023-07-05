@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:travelplanning/Screens/navpages/search_page.dart';
@@ -7,6 +8,7 @@ import 'package:travelplanning/widgets/app_text.dart';
 import 'package:travelplanning/widgets/firebaseImages.dart';
 
 import '../misc/colors.dart';
+import '../model/user_model.dart';
 import 'DetailPage.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +19,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  // Greeting logged in user
+  User? user = FirebaseAuth.instance.currentUser;
+
+  UserModel loggedInUser = UserModel();
+
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      this.loggedInUser = UserModel.fromMap(value.data());
+
+      setState(() {});
+    });
+  }
+
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getPlaceData(String category) {
@@ -63,7 +85,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
               Container(
                 margin: const EdgeInsets.only(left: 25),
-                child: AppText(text: "Sujan Gautam"),
+                child: AppText(
+                    text: '${loggedInUser.firstName}' +
+                        ' ' +
+                        '${loggedInUser.lastName}'),
               ),
               const SizedBox(
                 height: 25,
@@ -213,7 +238,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             documentId: snapshot
                                                 .data.docs[index].id
                                                 .toString(),
-
                                           ),
                                         ),
                                       );
@@ -299,7 +323,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             documentId: snapshot
                                                 .data.docs[index].id
                                                 .toString(),
-                                                
                                           ),
                                         ),
                                       );
@@ -361,9 +384,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               });
                         }),
 
-
                     // Waterfall Part
-                     StreamBuilder<dynamic>(
+                    StreamBuilder<dynamic>(
                         stream: getPlaceData('Waterfall'),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
@@ -386,7 +408,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             documentId: snapshot
                                                 .data.docs[index].id
                                                 .toString(),
-                                                
                                           ),
                                         ),
                                       );
