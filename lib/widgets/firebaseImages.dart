@@ -5,7 +5,7 @@ var heritageImages = {
     "Pashupati.png": "Pashupati",
     "Swyambu.png": "Swyambu",
     "patan-durbar.jpg": "Patan-Square",
-    "lumbini.png": "lumbini",
+    "lumbini.png": "Lumbini",
   };
 
   var mountainImages = {

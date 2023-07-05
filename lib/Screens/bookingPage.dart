@@ -1,21 +1,23 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-// import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:travelplanning/Screens/BookAirlines.dart';
+import 'package:travelplanning/Screens/DetailPage.dart';
+import 'package:travelplanning/Screens/rentCar.dart';
 
-class bookingPage extends StatefulWidget {
-  const bookingPage({Key? key}) : super(key: key);
+class BookingPage extends StatefulWidget {
+  const BookingPage({Key? key}) : super(key: key);
 
   @override
-  State<bookingPage> createState() => _bookingPageState();
+  State<BookingPage> createState() => _BookingPageState();
 }
 
-class _bookingPageState extends State<bookingPage>
+class _BookingPageState extends State<BookingPage>
     with TickerProviderStateMixin {
   TextEditingController name = TextEditingController();
   String result = "";
-  TextEditingController number = new TextEditingController();
-  TextEditingController email = new TextEditingController();
+  TextEditingController number = TextEditingController();
+  TextEditingController email = TextEditingController();
 
   Future<void> bookingSaved() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
@@ -27,7 +29,7 @@ class _bookingPageState extends State<bookingPage>
       };
       db.collection("booking").add(data).then((documentSnapshot) {
         ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Booked Successfully")));
+            .showSnackBar(const SnackBar(content: Text("Booked Successfully")));
         print("Added Data with ID: ${documentSnapshot.id}");
       });
     } catch (e) {
@@ -102,382 +104,414 @@ class _bookingPageState extends State<bookingPage>
     }
   }
 
-  // TextEditingController _date= TextEditingController();
+  final TextEditingController _date = TextEditingController();
 
-  int _currentIndex = 0;
+  // int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    TabController _tabController = TabController(length: 4, vsync: this);
+    TabController tabController = TabController(length: 4, vsync: this);
 
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.black,
-        showUnselectedLabels: false,
-        showSelectedLabels: false,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: "Favorite"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: "Settings"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
-        ],
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          child: Stack(
-            children: [
-              Positioned(
-                  child: Container(
+        // bottomNavigationBar: BottomNavigationBar(
+        //   currentIndex: _currentIndex,
+        //   onTap: (int index) {
+        //     setState(() {
+        //       _currentIndex = index;
+        //     });
+        //   },
+        //   selectedItemColor: Colors.red,
+        //   unselectedItemColor: Colors.black,
+        //   showUnselectedLabels: false,
+        //   showSelectedLabels: false,
+        //   items: const [
+        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(Icons.favorite), label: "Favorite"),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(Icons.settings), label: "Settings"),
+        //     BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
+        //   ],
+        // ),
+        body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: SizedBox(
                 width: double.maxFinite,
-                height: 300,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage('Assets/images/bckg.png'),
-                )),
-              )),
-              Positioned(
-                  left: 0,
-                  top: 20,
-                  child: Column(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.arrow_back),
-                      )
-                    ],
+                height: double.maxFinite,
+                child: Stack(children: [
+                  Positioned(
+                      child: Container(
+                    width: double.maxFinite,
+                    height: 300,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('img/bookingImage.png'),
+                            fit: BoxFit.fill)),
                   )),
-              Positioned(
-                  top: 180,
-                  child: Container(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, top: 30),
-                    width: MediaQuery.of(context).size.width,
-                    height: 800,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30))),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Positioned(
+                      left: 0,
+                      top: 20,
+                      child: Column(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DetailPage(documentId: '',)));
+                            },
+                            icon: const Icon(Icons.arrow_back),
+                          )
+                        ],
+                      )),
+                  Positioned(
+                    top: 180,
+                    child: Container(
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 20, top: 30),
+                        width: MediaQuery.of(context).size.width,
+                        height: 800,
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30))),
+                        child: Column(
                           children: [
-                            Text(
-                              'CHECK-IN',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            Text(
-                              'CHECK-OUT',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: TextField(
-                                    controller: _startDateController,
-                                    readOnly: true,
-                                    onTap: () => _selectDate(
-                                        context, _startDateController),
-                                    decoration: InputDecoration(
-                                      labelText: 'Select a Date ',
-                                      border: OutlineInputBorder(),
-                                      icon: Icon(Icons.calendar_today_rounded),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 10),
-                                Expanded(
-                                  child: TextField(
-                                    controller: _endDateController,
-                                    readOnly: true,
-                                    onTap: () => _selectDate(
-                                        context, _endDateController),
-                                    decoration: InputDecoration(
-                                      hintText: 'Select a Date',
-                                      border: OutlineInputBorder(),
-                                      icon: Icon(Icons.calendar_today_rounded),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'YOUR NAME',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              controller: name,
-                              keyboardType: TextInputType.name,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Name is required";
-                                }
-                                if (value != String) {
-                                  return "Name must be in string";
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.person,
-                                  color: Colors.black,
-                                  size: 22.0,
-                                ),
-                                hintText: ' Enter you full name',
-                                hintStyle: TextStyle(
-                                    fontFamily: 'WorkSansSemiBold',
-                                    fontSize: 17.0),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'E-MAIL ADDRESS',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              controller: email,
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                final RegExp emailValid = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-                                if (value == null || value.isEmpty) {
-                                  return "Email is required";
-                                }
-                                if (!emailValid.hasMatch(value)) {
-                                  return "Please enter a valid email";
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.email,
-                                  color: Colors.black,
-                                  size: 22.0,
-                                ),
-                                hintText: 'Enter you email address',
-                                hintStyle: TextStyle(
-                                    fontFamily: 'WorkSansSemiBold',
-                                    fontSize: 17.0),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'PHONE NUMBER',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              controller: number,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.phone,
-                                  color: Colors.black,
-                                  size: 22.0,
-                                ),
-                                hintText: '+977 Enter you phone number',
-                                hintStyle: TextStyle(
-                                    fontFamily: 'WorkSansSemiBold',
-                                    fontSize: 17.0),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: TabBar(
-                                  // labelPadding: const EdgeInsets.only(left: 0, right: 0),
-                                  controller: _tabController,
-                                  labelColor: Colors.black,
-                                  unselectedLabelColor: Colors.grey,
-
-                                  isScrollable: true,
-                                  tabs: [
-                                    Tab(
-                                      text: "Hotels",
-                                    ),
-                                    Tab(text: "Budget"),
-                                    Tab(text: "Standard"),
-                                    Tab(text: "5-Star"),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Adults',
+                                  'CHECK-IN',
                                   style: TextStyle(
                                     fontSize: 20,
                                   ),
                                 ),
                                 Text(
-                                  'Kids',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                Text(
-                                  'No. of rooms',
+                                  'CHECK-OUT',
                                   style: TextStyle(
                                     fontSize: 20,
                                   ),
                                 )
                               ],
                             ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                IncrementDecrementBox(
-                                  number: number1,
-                                  increment: incrementNumber1,
-                                  decrement: decrementNumber1,
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: TextField(
+                                        controller: _startDateController,
+                                        readOnly: true,
+                                        onTap: () => _selectDate(
+                                            context, _startDateController),
+                                        decoration: const InputDecoration(
+                                          labelText: 'Select a Date ',
+                                          border: OutlineInputBorder(),
+                                          icon: Icon(
+                                              Icons.calendar_today_rounded),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: TextField(
+                                        controller: _endDateController,
+                                        readOnly: true,
+                                        onTap: () => _selectDate(
+                                            context, _endDateController),
+                                        decoration: const InputDecoration(
+                                          hintText: 'Select a Date',
+                                          border: OutlineInputBorder(),
+                                          icon: Icon(
+                                              Icons.calendar_today_rounded),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                IncrementDecrementBox(
-                                  number: number2,
-                                  increment: incrementNumber2,
-                                  decrement: decrementNumber2,
+                                const SizedBox(
+                                  height: 15,
                                 ),
-                                IncrementDecrementBox(
-                                  number: number3,
-                                  increment: incrementNumber3,
-                                  decrement: decrementNumber3,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary:
-                                        Color(0xFFFFF9C4), // Background color
-                                    onPrimary: Colors
-                                        .grey, // Text Color (Foreground color)
+                                const Text(
+                                  'YOUR NAME',
+                                  style: TextStyle(
+                                    fontSize: 20,
                                   ),
-                                  onPressed: () {
-                                    bookingSaved();
-                                    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Registered")));
-                                  },
-                                  child: Text(
-                                    "Book Now",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'COMPLETE YOUR BOOKING WITH',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                              width: 30,
-                            ),
-                            Container(
-                                child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary:
-                                          Color(0xFFFFF9C4), // Background color
-                                      onPrimary: Colors
-                                          .grey, // Text Color (Foreground color)
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Airlines",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    )),
-                                SizedBox(
-                                  width: 100,
                                 ),
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary:
-                                          Color(0xFFFFF9C4), // Background color
-                                      onPrimary: Colors
-                                          .grey, // Text Color (Foreground color)
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                TextFormField(
+                                  controller: name,
+                                  keyboardType: TextInputType.name,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Name is required";
+                                    }
+                                    if (value != String) {
+                                      return "Name must be in string";
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.person,
+                                      color: Colors.black,
+                                      size: 22.0,
                                     ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Rental Cars",
+                                    hintText: ' Enter you full name',
+                                    hintStyle: TextStyle(
+                                        fontFamily: 'WorkSansSemiBold',
+                                        fontSize: 17.0),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                const Text(
+                                  'E-MAIL ADDRESS',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                TextFormField(
+                                  controller: email,
+                                  keyboardType: TextInputType.emailAddress,
+                                  validator: (value) {
+                                    final RegExp emailValid = RegExp(
+                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                                    if (value == null || value.isEmpty) {
+                                      return "Email is required";
+                                    }
+                                    if (!emailValid.hasMatch(value)) {
+                                      return "Please enter a valid email";
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.email,
+                                      color: Colors.black,
+                                      size: 22.0,
+                                    ),
+                                    hintText: 'Enter you email address',
+                                    hintStyle: TextStyle(
+                                        fontFamily: 'WorkSansSemiBold',
+                                        fontSize: 17.0),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                const Text(
+                                  'PHONE NUMBER',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                TextFormField(
+                                  controller: number,
+                                  decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.phone,
+                                      color: Colors.black,
+                                      size: 22.0,
+                                    ),
+                                    hintText: '+977 Enter you phone number',
+                                    hintStyle: TextStyle(
+                                        fontFamily: 'WorkSansSemiBold',
+                                        fontSize: 17.0),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Container(
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: TabBar(
+                                      // labelPadding: const EdgeInsets.only(left: 0, right: 0),
+                                      controller: tabController,
+                                      labelColor: Colors.black,
+                                      unselectedLabelColor: Colors.grey,
+
+                                      isScrollable: true,
+                                      tabs: const [
+                                        Tab(
+                                          text: "Hotels",
+                                        ),
+                                        Tab(text: "Budget"),
+                                        Tab(text: "Standard"),
+                                        Tab(text: "5-Star"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 20, right: 10),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Adults',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Kids',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      Text(
+                                        'No. of rooms',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IncrementDecrementBox(
+                                        number: number1,
+                                        increment: incrementNumber1,
+                                        decrement: decrementNumber1,
+                                      ),
+                                      IncrementDecrementBox(
+                                        number: number2,
+                                        increment: incrementNumber2,
+                                        decrement: decrementNumber2,
+                                      ),
+                                      IncrementDecrementBox(
+                                        number: number3,
+                                        increment: incrementNumber3,
+                                        decrement: decrementNumber3,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Column(
+                                  
+                                  children: [
+                                    const Text(
+                                      'Choose your travelling preferences: ',
                                       style: TextStyle(
                                           fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    )),
+                                          fontWeight: FontWeight.w100),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor: Colors.grey,
+                                            backgroundColor:
+                                                const Color(0xFFFFF9C4),
+                                                minimumSize: Size(150, 50)
+                                                
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const BookAirlines()),
+                                            );
+                                          },
+                                          child: const Text(
+                                            "Airlines",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 50),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor: Colors.grey,
+                                            backgroundColor:
+                                                const Color(0xFFFFF9C4),
+                                                minimumSize: Size(150, 50)
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const RentCar()),
+                                            );
+                                          },
+                                          child: const Text(
+                                            "Rental Cars",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 50,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          foregroundColor: Colors.grey,
+                                          backgroundColor:
+                                              const Color(0xFFFFF9C4),
+                                        ),
+                                        onPressed: () {
+                                          bookingSaved();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                                content: Text("Registered")),
+                                          );
+                                        },
+                                        child: const Text(
+                                          "Book Now",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ],
-                            ))
+                            )
                           ],
-                        )
-                      ],
-                    ),
-                  )),
-            ],
-          ),
-        ),
-      ),
-    );
+                        )),
+                  ),
+                ]))));
   }
 }
 
@@ -487,6 +521,7 @@ class IncrementDecrementBox extends StatelessWidget {
   final VoidCallback decrement;
 
   const IncrementDecrementBox({
+    super.key,
     required this.number,
     required this.increment,
     required this.decrement,
@@ -497,12 +532,12 @@ class IncrementDecrementBox extends StatelessWidget {
     return Row(
       children: [
         IconButton(
-          icon: Icon(Icons.remove),
+          icon: const Icon(Icons.remove),
           onPressed: decrement,
         ),
         Text(number.toString()),
         IconButton(
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
           onPressed: increment,
         ),
       ],
