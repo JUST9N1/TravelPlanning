@@ -213,6 +213,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             documentId: snapshot
                                                 .data.docs[index].id
                                                 .toString(),
+
                                           ),
                                         ),
                                       );
@@ -275,128 +276,177 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         }),
 
                     // Lake Part
-                    ListView.builder(
-                      itemCount: lakeImages.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        final imageName = lakeImages.keys.elementAt(index);
-                        final imageUrl =
-                            'gs://travelplanning-64738.appspot.com/lake/$imageName';
+                    StreamBuilder<dynamic>(
+                        stream: getPlaceData('Lake'),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var placeData = snapshot.data.docs;
+                            print(placeData);
+                          }
+                          return ListView.builder(
+                              itemCount: snapshot.data.docs.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                final imageName3 =
+                                    mountainImages.keys.elementAt(index);
+                                final imageUrl =
+                                    snapshot.data.docs[index]["imageUrl"];
+                                return InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => DetailPage(
+                                            documentId: snapshot
+                                                .data.docs[index].id
+                                                .toString(),
+                                                
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: FutureBuilder<String>(
+                                        future: firebase_storage
+                                            .FirebaseStorage.instance
+                                            .refFromURL(imageUrl)
+                                            .getDownloadURL(),
+                                        builder: (BuildContext context,
+                                            AsyncSnapshot<String> snapshot) {
+                                          if (snapshot.connectionState ==
+                                                  ConnectionState.done &&
+                                              snapshot.hasData) {
+                                            return Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 15, top: 10),
+                                              width: 200,
+                                              height: 300,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Colors.white,
+                                                image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      snapshot.data!),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            );
+                                          } else if (snapshot.hasError) {
+                                            return Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 15, top: 10),
+                                              width: 200,
+                                              height: 300,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Colors.white,
+                                              ),
+                                              child: const Center(
+                                                child:
+                                                    Text('Error loading image'),
+                                              ),
+                                            );
+                                          } else {
+                                            return Container(
+                                                margin: const EdgeInsets.only(
+                                                    right: 15, top: 10),
+                                                width: 200,
+                                                height: 300,
+                                                child: const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ));
+                                          }
+                                        }));
+                              });
+                        }),
 
-                        return FutureBuilder<String>(
-                          future: firebase_storage.FirebaseStorage.instance
-                              .refFromURL(imageUrl)
-                              .getDownloadURL(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<String> snapshot) {
-                            if (snapshot.connectionState ==
-                                    ConnectionState.done &&
-                                snapshot.hasData) {
-                              return Container(
-                                margin:
-                                    const EdgeInsets.only(right: 15, top: 10),
-                                width: 200,
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                  image: DecorationImage(
-                                    image: NetworkImage(snapshot.data!),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              );
-                            } else if (snapshot.hasError) {
-                              return Container(
-                                margin:
-                                    const EdgeInsets.only(right: 15, top: 10),
-                                width: 200,
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                ),
-                                child: const Center(
-                                  child: Text('Error loading image'),
-                                ),
-                              );
-                            } else {
-                              return Container(
-                                margin:
-                                    const EdgeInsets.only(right: 15, top: 10),
-                                width: 200,
-                                height: 300,
-                                child: const Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              );
-                            }
-                          },
-                        );
-                      },
-                    ),
 
                     // Waterfall Part
-                    ListView.builder(
-                      itemCount: waterfallImages.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        final imageName = waterfallImages.keys.elementAt(index);
-                        final imageUrl =
-                            'gs://travelplanning-64738.appspot.com/waterfall/$imageName';
-
-                        return FutureBuilder<String>(
-                          future: firebase_storage.FirebaseStorage.instance
-                              .refFromURL(imageUrl)
-                              .getDownloadURL(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<String> snapshot) {
-                            if (snapshot.connectionState ==
-                                    ConnectionState.done &&
-                                snapshot.hasData) {
-                              return Container(
-                                margin:
-                                    const EdgeInsets.only(right: 15, top: 10),
-                                width: 200,
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                  image: DecorationImage(
-                                    image: NetworkImage(snapshot.data!),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              );
-                            } else if (snapshot.hasError) {
-                              return Container(
-                                margin:
-                                    const EdgeInsets.only(right: 15, top: 10),
-                                width: 200,
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                ),
-                                child: const Center(
-                                  child: Text('Error loading image'),
-                                ),
-                              );
-                            } else {
-                              return Container(
-                                margin:
-                                    const EdgeInsets.only(right: 15, top: 10),
-                                width: 200,
-                                height: 300,
-                                child: const Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              );
-                            }
-                          },
-                        );
-                      },
-                    ),
+                     StreamBuilder<dynamic>(
+                        stream: getPlaceData('Waterfall'),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var placeData = snapshot.data.docs;
+                            print(placeData);
+                          }
+                          return ListView.builder(
+                              itemCount: snapshot.data.docs.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                final imageName3 =
+                                    mountainImages.keys.elementAt(index);
+                                final imageUrl =
+                                    snapshot.data.docs[index]["imageUrl"];
+                                return InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => DetailPage(
+                                            documentId: snapshot
+                                                .data.docs[index].id
+                                                .toString(),
+                                                
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: FutureBuilder<String>(
+                                        future: firebase_storage
+                                            .FirebaseStorage.instance
+                                            .refFromURL(imageUrl)
+                                            .getDownloadURL(),
+                                        builder: (BuildContext context,
+                                            AsyncSnapshot<String> snapshot) {
+                                          if (snapshot.connectionState ==
+                                                  ConnectionState.done &&
+                                              snapshot.hasData) {
+                                            return Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 15, top: 10),
+                                              width: 200,
+                                              height: 300,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Colors.white,
+                                                image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      snapshot.data!),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            );
+                                          } else if (snapshot.hasError) {
+                                            return Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 15, top: 10),
+                                              width: 200,
+                                              height: 300,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Colors.white,
+                                              ),
+                                              child: const Center(
+                                                child:
+                                                    Text('Error loading image'),
+                                              ),
+                                            );
+                                          } else {
+                                            return Container(
+                                                margin: const EdgeInsets.only(
+                                                    right: 15, top: 10),
+                                                width: 200,
+                                                height: 300,
+                                                child: const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ));
+                                          }
+                                        }));
+                              });
+                        }),
                   ],
                 ),
               ),
