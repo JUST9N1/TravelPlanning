@@ -54,10 +54,10 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCZSpbiZHnhWQ6xnDmnRO4lJxLy8QGNP5I',
-    appId: '1:655355115956:android:aeb0f4a0030d8c3b5b9ae1',
+    apiKey: 'AIzaSyDBbOMijHe4zXYMXHVl4Pf8Bmf6197of4o',
+    appId: '1:281868381414:android:f5577e28ce622149081f27',
     messagingSenderId: '655355115956',
-    projectId: 'travel-plan-4a24b',
+    projectId: 'travelplanning-64738',
     storageBucket: 'travel-plan-4a24b.appspot.com',
   );
 

@@ -18,9 +18,17 @@ class PersonalInfo extends StatefulWidget {
 class _PersonalInfo extends State<PersonalInfo> {
   User? user = FirebaseAuth.instance.currentUser;
 
-
   UserModel loggedInUser = UserModel();
 
+  
+  
+  static final userId = FirebaseAuth.instance.currentUser!.uid;
+
+
+  void deleteUser(){
+    // FirebaseFirestore.instance.collection()
+
+   }
   @override
   void initState() {
     super.initState();
@@ -129,7 +137,8 @@ class _PersonalInfo extends State<PersonalInfo> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                                        },
                             child: const Text(
                               'Update',
                               style: TextStyle(
@@ -148,3 +157,4 @@ class _PersonalInfo extends State<PersonalInfo> {
     ]));
   }
 }
+
