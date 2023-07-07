@@ -185,30 +185,7 @@ class _LoginPageState extends State<LoginPage> {
 
     // login/signup image
 
-    final img = Container(
-
-      width: w,
-
-      height: 0.3 * h,
-
-      decoration: const BoxDecoration(
-
-        image: DecorationImage(
-
-          image: AssetImage(
-
-            "img/login Signup.png",
-
-          ),
-
-          fit: BoxFit.cover,
-
-        ),
-
-      ),
-
-    );
-
+    
 
 
 
