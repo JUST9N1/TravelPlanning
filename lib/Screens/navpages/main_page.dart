@@ -21,7 +21,7 @@ class _MainPageState extends State<MainPage> {
     const HomePage(),
     const BarItemPage(),
     const SearchPage(),
-    const Mypage()
+    const MyPage()
   ];
   int currentIndex = 0;
   void onTap(int index){
