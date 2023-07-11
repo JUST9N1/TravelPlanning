@@ -173,4 +173,51 @@ class DeleteAccount extends StatelessWidget {
 
                   SizedBox(height: 20),
 
-                 
+                  GestureDetector(
+
+                    onTap: () {
+
+                      print("Delete Account Clicked Event");
+
+                      _deleteAccount(context, email.text, pass.text);
+
+                      // Navigator.pushReplacement(
+
+                      //   context,
+
+                      //   MaterialPageRoute(
+
+                      //       builder: (context) => const LoginPage()),
+
+                      // );
+
+                    },
+
+                    child: Text(
+
+                      "Delete Account",
+
+                      style: TextStyle(color: Colors.white),
+
+                    ),
+
+                  ),
+
+                ],
+
+              ),
+
+            )
+
+          ],
+
+        ),
+
+      ),
+
+    );
+
+  }
+
+
+
