@@ -293,3 +293,53 @@ class DeleteAccount extends StatelessWidget {
   }
 
 
+
+
+  Future<void> _deleteUserFromFirestore(String userId) async {
+
+    try {
+
+      await FirebaseFirestore.instance.collection('users').doc(userId).delete();
+
+      print("User deleted from Firestore successfully.");
+
+    } catch (e) {
+
+      print("Error deleting user from Firestore: $e");
+
+    }
+
+  }
+
+
+
+
+  void _showSnackBar(BuildContext context, String message) {
+
+    ScaffoldMessenger.of(context).showSnackBar(
+
+      SnackBar(
+
+        content: Text(message),
+
+      ),
+
+    );
+
+  }
+
+
+
+
+  void _clearFields() {
+
+    email.clear();
+
+    pass.clear();
+
+  }
+
+}
+
+
+
