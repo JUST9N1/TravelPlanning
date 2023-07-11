@@ -127,5 +127,50 @@ class DeleteAccount extends StatelessWidget {
 
                   SizedBox(height: 20),
 
-                
+                  Padding(
 
+                    padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+
+                    child: TextField(
+
+                      controller: pass,
+
+                      decoration: InputDecoration(
+
+                        hintText: 'Password',
+
+                        hintStyle: TextStyle(color: Colors.white),
+
+                        enabledBorder: OutlineInputBorder(
+
+                          borderRadius: BorderRadius.circular(10.0),
+
+                          borderSide: BorderSide(color: Colors.white),
+
+                        ),
+
+                        focusedBorder: OutlineInputBorder(
+
+                          borderRadius: BorderRadius.circular(10.0),
+
+                          borderSide: BorderSide(color: Colors.blue),
+
+                        ),
+
+                        isDense: true,
+
+                        contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+
+                      ),
+
+                      cursorColor: Colors.white,
+
+                      style: TextStyle(color: Colors.white),
+
+                    ),
+
+                  ),
+
+                  SizedBox(height: 20),
+
+                 
