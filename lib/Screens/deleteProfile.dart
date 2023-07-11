@@ -220,4 +220,76 @@ class DeleteAccount extends StatelessWidget {
   }
 
 
+  Future<void> _deleteAccount(
+
+      BuildContext context, String email, String password) async {
+
+    try {
+
+      UserCredential userCredential = await FirebaseAuth.instance
+
+          .signInWithEmailAndPassword(email: email, password: password);
+
+
+
+
+      if (userCredential.user != null) {
+
+        await _deleteUserFromFirestore(userCredential.user!.uid);
+
+        await userCredential.user!.delete();
+
+
+
+
+        // Account deleted successfully
+
+        print("User account deleted successfully.");
+
+        _showSnackBar(context, "User account deleted successfully.");
+
+        _clearFields();
+
+      } else {
+
+        // User is not signed in or does not exist
+
+        print("User does not exist or is not signed in.");
+
+        _showSnackBar(context, "User does not exist or is not signed in.");
+
+      }
+
+    } on FirebaseAuthException catch (e) {
+
+      if (e.code == 'wrong-password') {
+
+        // Incorrect password
+
+        print("Wrong password. Please try again.");
+
+        _showSnackBar(context, "Wrong password. Please try again.");
+
+      } else {
+
+        // Other errors
+
+        print("Error deleting user account: ${e.message}");
+
+        _showSnackBar(context, "Error deleting user account: ${e.message}");
+
+      }
+
+    } catch (e) {
+
+      // General error
+
+      print("Error deleting user account: $e");
+
+      _showSnackBar(context, "Error deleting user account: $e");
+
+    }
+
+  }
+
 
