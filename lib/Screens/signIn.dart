@@ -89,7 +89,11 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
+
       TextEditingController();
+
+  TextEditingController();
+
 
 
 
@@ -100,6 +104,9 @@ class _LoginPageState extends State<LoginPage> {
 
 
       TextEditingController();
+
+  TextEditingController();
+
 
 
 
@@ -620,7 +627,10 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
+
                     const EdgeInsets.only(left: 20, bottom: 120, right: 20),
+                    const EdgeInsets.only(left: 20, bottom: 120, right: 20),
+
 
 
 
@@ -980,7 +990,11 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
+
                                               const RegistrationScreen()));
+
+                                          const RegistrationScreen()));
+
 
 
 
@@ -1069,6 +1083,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
           .then((uid) => {
+
                 Fluttertoast.showToast(msg: "Login Successful"),
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const MainPage())),
@@ -1077,6 +1092,47 @@ class _LoginPageState extends State<LoginPage> {
           .catchError((e) {
 
         Fluttertoast.showToast(msg: e!.message);
+
+
+
+
+
+
+
+        Fluttertoast.showToast(msg: "Login Successful"),
+
+
+
+
+        Navigator.of(context).pushReplacement(
+
+
+
+
+            MaterialPageRoute(builder: (context) => const MainPage())),
+
+
+
+
+      })
+
+
+
+
+      // ignore: body_might_complete_normally_catch_error
+
+
+
+
+          .catchError((e) {
+
+
+
+
+        Fluttertoast.showToast(msg: e!.message);
+
+
+
 
 
       });
