@@ -69,3 +69,42 @@ class _PaymentState extends State<Payment> {
     ),
 
     ),
+
+
+      const SizedBox(height: 10), // Add some vertical spacing
+
+      const Text('Choose any payment option'),
+
+      const SizedBox(height: 10), // Add some vertical spacing
+
+      buildPaymentOption('img/esewa.png', 0),
+
+      const SizedBox(height: 10), // Add some vertical spacing
+
+      buildPaymentOption('img/fonepay.png', 1),
+
+      buildTotal(),
+
+      buildConfirmPaymentButton(),
+
+      const SizedBox(height: 10),
+
+      buildCancelPaymentButton(),
+
+      if (paymentSuccessful) const Text('Payment Successful'),
+
+                  ],
+
+               ),
+
+            ),
+
+          ],
+
+         ),
+
+        ),
+
+    );
+
+  }
