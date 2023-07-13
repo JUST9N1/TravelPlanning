@@ -188,3 +188,45 @@ class _PaymentState extends State<Payment> {
     );
 
   }
+
+  Widget buildConfirmPaymentButton() {
+
+    return GestureDetector(
+
+      onTap: () {
+
+        setState(() {
+
+          paymentSuccessful = true;
+
+        });
+
+      },
+
+      child: Container(
+
+        margin: const EdgeInsets.fromLTRB(21, 0, 37, 0),
+
+        width: double.infinity,
+
+        height: 81,
+
+        decoration: const BoxDecoration(
+
+          color: Colors.green,
+
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+
+        ),
+
+        child: const Center(
+
+          child: Text('Confirm Payment'),
+
+        ),
+
+      ),
+
+    );
+
+  }
