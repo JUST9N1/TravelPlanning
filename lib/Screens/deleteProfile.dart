@@ -47,6 +47,7 @@ class DeleteAccount extends StatelessWidget {
               ),
 
             ),
+
             Padding(
 
               padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
@@ -220,6 +221,8 @@ class DeleteAccount extends StatelessWidget {
   }
 
 
+
+
   Future<void> _deleteAccount(
 
       BuildContext context, String email, String password) async {
@@ -340,6 +343,3 @@ class DeleteAccount extends StatelessWidget {
   }
 
 }
-
-
-
