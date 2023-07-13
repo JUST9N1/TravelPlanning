@@ -108,3 +108,48 @@ class _PaymentState extends State<Payment> {
     );
 
   }
+
+  Widget buildPaymentOption(String imagePath, int index) {
+
+    return Padding(
+
+      padding: const EdgeInsets.symmetric(vertical: 8.0), // Add vertical padding
+
+      child: ListTile(
+
+        leading: Radio<int>(
+
+          value: index,
+
+          groupValue: selectedPaymentOption,
+
+          onChanged: (int? value) {
+
+            setState(() {
+
+              selectedPaymentOption = value!;
+
+            });
+
+          },
+
+        ),
+
+        title: Image.asset(
+
+          imagePath,
+
+          width: 190,
+
+          height: 57,
+
+          fit: BoxFit.cover,
+
+        ),
+
+      ),
+
+    );
+
+  }
+
