@@ -332,8 +332,6 @@ class DeleteAccount extends StatelessWidget {
   }
 
 
-
-
   void _clearFields() {
 
     email.clear();
