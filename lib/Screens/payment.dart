@@ -153,3 +153,38 @@ class _PaymentState extends State<Payment> {
 
   }
 
+  Widget buildTotal() {
+
+    return Container(
+
+      margin: const EdgeInsets.fromLTRB(21, 0, 37, 47),
+
+      width: double.infinity,
+
+      child: const Row(
+
+        crossAxisAlignment: CrossAxisAlignment.center,
+
+        children: [
+
+          Expanded(
+
+            child: Text(
+
+              'Total',
+
+              textAlign: TextAlign.start,
+
+            ),
+
+          ),
+
+          Text('\$650'),
+
+        ],
+
+      ),
+
+    );
+
+  }
