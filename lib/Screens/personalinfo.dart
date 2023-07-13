@@ -44,7 +44,7 @@ class _PersonalInfo extends State<PersonalInfo> {
         padding: EdgeInsets.only(top: 50),
         onPressed: () {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => Mypage()));
+              MaterialPageRoute(builder: (context) => MyPage()));
         },
         icon: const Icon(Icons.arrow_back),
       ),
