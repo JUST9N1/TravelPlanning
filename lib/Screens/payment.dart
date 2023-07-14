@@ -1,61 +1,23 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 
-import 'package:fluttertoast/fluttertoast.dart';
-
-import 'package:travelplanning/Screens/navpages/main_page.dart';
 
 
 
+class Payment extends StatefulWidget {
 
-import 'RegistrationScreen.dart';
-
-
-
-
-
-class LoginPage extends StatefulWidget {
-
-  const LoginPage({Key? key}) : super(key: key);
-
-
-
+  const Payment({Key? key}) : super(key: key);
 
   @override
 
-  State<LoginPage> createState() => _LoginPageState();
+  _PaymentState createState() => _PaymentState();
 
 }
 
+class _PaymentState extends State<Payment> {
 
+  int selectedPaymentOption = 0; // Track the selected payment option
 
-
-class _LoginPageState extends State<LoginPage> {
-
-  // form key
-
-  final _formkey = GlobalKey<FormState>();
-
-
-
-
-  //editing Controller
-
-  final TextEditingController emailEditingController =
-
-      TextEditingController();
-
-  final TextEditingController passwordEditingController =
-
-      TextEditingController();
-
-
-
-
-  // firebase
-
-  final _auth = FirebaseAuth.instance;
+  bool paymentSuccessful = false; // Track payment success
 
 
 
@@ -64,142 +26,122 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget build(BuildContext context) {
 
-    double w = MediaQuery.of(context).size.width;
+    return Scaffold(
 
-    double h = MediaQuery.of(context).size.height;
+        body: Container(
 
+        width: double.infinity,
 
+        color: Colors.white,
 
+        child: Column(
 
-    // email field
+        crossAxisAlignment: CrossAxisAlignment.center,
 
-    final emailField = TextFormField(
+        children: [
 
-      autofocus: false,
+        Container(
 
-      controller: emailEditingController,
+        padding: const EdgeInsets.fromLTRB(14, 21, 14, 118),
 
-      keyboardType: TextInputType.emailAddress,
+    width: double.infinity,
 
-      validator: (value) {
+    child: Column(
 
-        if (value!.isEmpty) {
+    crossAxisAlignment: CrossAxisAlignment.start,
 
-          return ("Please Enter Your Email");
+    children: [
 
-        }
+    Container(
 
-        // reg expression for email validation
+    padding: const EdgeInsets.only(left: 110, top: 50),
 
-        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+    margin: const EdgeInsets.only(bottom: 94),
 
-          return ("Please Enter a valid email");
+    child: const Text(
 
-        }
+    'Payment',
 
-        return null;
+    textAlign: TextAlign.right,
 
-      },
+    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
 
-      onSaved: (value) {
+    ),
 
-        emailEditingController.text = value!;
-
-      },
-
-      textInputAction: TextInputAction.next,
-
-      decoration: InputDecoration(
-
-          prefixIcon: const Icon(Icons.mail),
-
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-
-          hintText: "Email",
-
-          border: OutlineInputBorder(
-
-            borderRadius: BorderRadius.circular(10),
-
-          )),
-
-    );
+    ),
 
 
+      const SizedBox(height: 10), // Add some vertical spacing
 
+      const Text('Choose any payment option'),
 
-    final passwordField = TextFormField(
+      const SizedBox(height: 10), // Add some vertical spacing
 
-      autofocus: false,
+      buildPaymentOption('img/esewa.png', 0),
 
-      controller: passwordEditingController,
+      const SizedBox(height: 10), // Add some vertical spacing
 
-      obscureText: true,
+      buildPaymentOption('img/fonepay.png', 1),
 
-      validator: (value) {
+      buildTotal(),
 
-        RegExp regex = RegExp(r'^.{6,}$');
+      buildConfirmPaymentButton(),
 
-        if (value!.isEmpty) {
+      const SizedBox(height: 10),
 
-          return ("Password is required for login");
+      buildCancelPaymentButton(),
 
-        }
+      if (paymentSuccessful) const Text('Payment Successful'),
 
-        if (!regex.hasMatch(value)) {
+                  ],
 
-          return ("Please Enter Valid Password(Min. 6 Character)");
+               ),
 
-        }
+            ),
 
-        return null;
+          ],
 
-      },
+         ),
 
-      onSaved: (value) {
-
-        passwordEditingController.text = value!;
-
-      },
-
-      textInputAction: TextInputAction.next,
-
-      decoration: InputDecoration(
-
-          prefixIcon: const Icon(Icons.vpn_key),
-
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-
-          hintText: "Password",
-
-          border: OutlineInputBorder(
-
-            borderRadius: BorderRadius.circular(10),
-
-          )),
+        ),
 
     );
 
+  }
 
+  Widget buildPaymentOption(String imagePath, int index) {
 
+    return Padding(
 
-    // login/signup image
+      padding: const EdgeInsets.symmetric(vertical: 8.0), // Add vertical padding
 
-    final img = Container(
+      child: ListTile(
 
-      width: w,
+        leading: Radio<int>(
 
-      height: 0.3 * h,
+          value: index,
 
-      decoration: const BoxDecoration(
+          groupValue: selectedPaymentOption,
 
-        image: DecorationImage(
+          onChanged: (int? value) {
 
-          image: AssetImage(
+            setState(() {
 
-            "img/login Signup.png",
+              selectedPaymentOption = value!;
 
-          ),
+            });
+
+          },
+
+        ),
+
+        title: Image.asset(
+
+          imagePath,
+
+          width: 190,
+
+          height: 57,
 
           fit: BoxFit.cover,
 
@@ -209,266 +151,111 @@ class _LoginPageState extends State<LoginPage> {
 
     );
 
+  }
 
+  Widget buildTotal() {
 
+    return Container(
 
-    final loginButton = Material(
+      margin: const EdgeInsets.fromLTRB(21, 0, 37, 47),
 
-        elevation: 5,
+      width: double.infinity,
 
-        borderRadius: BorderRadius.circular(30),
+      child: const Row(
 
-        color: Colors.grey,
+        crossAxisAlignment: CrossAxisAlignment.center,
 
-        child: MaterialButton(
+        children: [
 
-          padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          Expanded(
 
-          minWidth: MediaQuery.of(context).size.width,
+            child: Text(
 
-          onPressed: () {
+              'Total',
 
-            signIn(emailEditingController.text, passwordEditingController.text);
+              textAlign: TextAlign.start,
 
-          },
-
-          child: const Text(
-
-            "Login",
-
-            textAlign: TextAlign.center,
-
-            style: TextStyle(
-
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+            ),
 
           ),
 
-        ));
+          Text('\$650'),
 
+        ],
 
+      ),
 
-
-    return Scaffold(
-
-        appBar: AppBar(
-
-          title: const Text("Travel Planning"),
-
-        ),
-
-        backgroundColor: Colors.white,
-
-        body: Center(
-
-          child: SingleChildScrollView(
-
-            child: Container(
-
-                color: Colors.white,
-
-                padding:
-
-                    const EdgeInsets.only(left: 20, bottom: 120, right: 20),
-
-                child: Form(
-
-                  key: _formkey,
-
-                  child: Column(
-
-                    mainAxisAlignment: MainAxisAlignment.center,
-
-                    crossAxisAlignment: CrossAxisAlignment.center,
-
-                    children: <Widget>[
-
-                      const Text(
-
-                        "\"Let the adventure beign\"",
-
-                        style: TextStyle(
-
-                            color: Color.fromARGB(255, 89, 149, 197),
-
-                            fontSize: 30,
-
-                            fontWeight: FontWeight.bold),
-
-                      ),
-
-                      img,
-
-                      Padding(
-
-                        padding: const EdgeInsets.only(left: 0),
-
-                        child: Align(
-
-                          alignment: Alignment.topLeft,
-
-                          child: SizedBox(
-
-                            width: 100,
-
-                            height: 58,
-
-                            child: Image.asset(
-
-                              "img/minicar.png",
-
-                              fit: BoxFit.fitWidth,
-
-                            ),
-
-                          ),
-
-                        ),
-
-                      ),
-
-                      const Row(
-
-                        children: [
-
-                          Text(
-
-                            "Sign into your account",
-
-                            style: TextStyle(fontSize: 15, color: Colors.grey),
-
-                          ),
-
-                        ],
-
-                      ),
-
-                      const SizedBox(
-
-                        height: 15,
-
-                      ),
-
-                      emailField,
-
-                      const SizedBox(height: 15),
-
-                      passwordField,
-
-                      const SizedBox(
-
-                        height: 5,
-
-                      ),
-
-                      Row(
-
-                        children: [
-
-                          Expanded(
-
-                            child: Container(),
-
-                          ),
-
-                          const Text(
-
-                            "Forgot your password?",
-
-                            style: TextStyle(fontSize: 15, color: Colors.grey),
-
-                          ),
-
-                        ],
-
-                      ),
-
-                      const SizedBox(height: 15),
-
-                      loginButton,
-
-                      const SizedBox(
-
-                        height: 15,
-
-                      ),
-
-                      Row(
-
-                          mainAxisAlignment: MainAxisAlignment.center,
-
-                          children: <Widget>[
-
-                            const Text("Don't have an account? "),
-
-                            GestureDetector(
-
-                                onTap: () {
-
-                                  Navigator.push(
-
-                                      context,
-
-                                      MaterialPageRoute(
-
-                                          builder: (context) =>
-
-                                              const RegistrationScreen()));
-
-                                },
-
-                                child: const Text("SignUp",
-
-                                    style: TextStyle(
-
-                                        fontWeight: FontWeight.bold,
-
-                                        fontSize: 15)))
-
-                          ])
-
-                    ],
-
-                  ),
-
-                )),
-
-          ),
-
-        ));
+    );
 
   }
 
+  Widget buildConfirmPaymentButton() {
 
+    return GestureDetector(
 
+      onTap: () {
 
-  void signIn(String email, String password) async {
+        setState(() {
 
-    if (_formkey.currentState!.validate()) {
+          paymentSuccessful = true;
 
-      await _auth
+        });
 
-          .signInWithEmailAndPassword(email: email, password: password)
+      },
 
-          .then((uid) => {
+      child: Container(
 
-                Fluttertoast.showToast(msg: "Login Successful"),
+        margin: const EdgeInsets.fromLTRB(21, 0, 37, 0),
 
-                Navigator.of(context).pushReplacement(
+        width: double.infinity,
 
-                    MaterialPageRoute(builder: (context) => const MainPage())),
+        height: 81,
 
-              })
+        decoration: const BoxDecoration(
 
-          // ignore: body_might_complete_normally_catch_error
+          color: Colors.green,
 
-          .catchError((e) {
+          borderRadius: BorderRadius.all(Radius.circular(20)),
 
-        Fluttertoast.showToast(msg: e!.message);
+        ),
 
-      });
+        child: const Center(
 
-    }
+          child: Text('Confirm Payment'),
+
+        ),
+
+      ),
+
+    );
+
+  }
+
+  Widget buildCancelPaymentButton() {
+
+    return Container(
+
+      margin: const EdgeInsets.fromLTRB(21, 0, 37, 0),
+
+      width: double.infinity,
+
+      height: 81,
+
+      decoration: const BoxDecoration(
+
+        color: Colors.red,
+
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+
+      ),
+
+      child: const Center(
+
+        child: Text('Cancel Payment'),
+
+      ),
+
+    );
 
   }
 
