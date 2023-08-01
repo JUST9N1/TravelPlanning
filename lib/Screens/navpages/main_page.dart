@@ -4,7 +4,7 @@ import 'package:travelplanning/Screens/navpages/my_page.dart';
 import 'package:travelplanning/Screens/navpages/search_page.dart';
 
 import '../HomePage.dart';
-import 'bar_item_page.dart';
+import 'setting.dart';
 
 
 
@@ -19,7 +19,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   List pages = [
     const HomePage(),
-    const BarItemPage(),
+    const Settings(),
     const SearchPage(),
     const MyPage()
   ];
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
       showSelectedLabels: false,
       items: const [
         BottomNavigationBarItem( label:"Home", icon: Icon(Icons.apps)),
-        BottomNavigationBarItem(label: "Bar", icon: Icon(Icons.bar_chart_sharp)),
+        BottomNavigationBarItem(label: "Bar", icon: Icon(Icons.settings)),
         BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
         BottomNavigationBarItem(label: "My", icon: Icon(Icons.person))
       ],

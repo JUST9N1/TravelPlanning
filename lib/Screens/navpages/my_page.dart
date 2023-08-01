@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:travelplanning/Screens/delete.dart';
+import 'package:travelplanning/Screens/delete.dart';
 
 
 import '../personalinfo.dart';
@@ -110,8 +110,8 @@ class _MyPage extends State<MyPage> with TickerProviderStateMixin {
               children: [
                 TextButton(
                     onPressed: () {
-                      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      //     builder: (context) =>  DeleteAccount()));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) =>  DeleteAccount()));
                     },
                     child: Text(
                       'Delete Account',
