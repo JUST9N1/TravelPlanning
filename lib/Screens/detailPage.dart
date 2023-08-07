@@ -88,6 +88,7 @@ class _DetailPageState extends State<DetailPage> {
                           topRight: Radius.circular(20),
                         ),
                       ),
+                      // Dynamic
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
