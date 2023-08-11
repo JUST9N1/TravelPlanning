@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:travelplanning/Screens/HomePage.dart';
+import 'package:travelplanning/Screens/homePage.dart';
 
 import 'package:travelplanning/Screens/signIn.dart';
 

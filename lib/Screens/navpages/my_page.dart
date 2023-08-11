@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:travelplanning/Screens/delete.dart';
 
 
-import '../personalinfo.dart';
+import '../personalInfo.dart';
 import 'main_page.dart';
 
 class MyPage extends StatefulWidget {

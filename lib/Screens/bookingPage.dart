@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:travelplanning/Screens/BookAirlines.dart';
-import 'package:travelplanning/Screens/DetailPage.dart';
+import 'package:travelplanning/Screens/bookAirlines.dart';
+import 'package:travelplanning/Screens/detailPage.dart';
 import 'package:travelplanning/Screens/rentCar.dart';
 
 class BookingPage extends StatefulWidget {

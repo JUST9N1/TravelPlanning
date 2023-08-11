@@ -3,13 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:travelplanning/Screens/navpages/search_page.dart';
-import 'package:travelplanning/widgets/app_large_text.dart';
-import 'package:travelplanning/widgets/app_text.dart';
+import 'package:travelplanning/widgets/appLargeText.dart';
+import 'package:travelplanning/widgets/appText.dart';
 import 'package:travelplanning/widgets/firebaseImages.dart';
 
 import '../misc/colors.dart';
 import '../model/user_model.dart';
-import 'DetailPage.dart';
+import 'detailPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

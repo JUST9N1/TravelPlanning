@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:travelplanning/Screens/navpages/main_page.dart';
 
-import 'RegistrationScreen.dart';
+import 'registrationScreen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
