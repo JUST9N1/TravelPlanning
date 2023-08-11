@@ -148,6 +148,7 @@ class _DetailPageState extends State<DetailPage> {
                           const SizedBox(
                             height: 25,
                           ),
+                          // Select people
                           AppLargeText(
                             text: "People",
                             color: Colors.black.withOpacity(0.8),
@@ -193,6 +194,7 @@ class _DetailPageState extends State<DetailPage> {
                           const SizedBox(
                             height: 10,
                           ),
+                          // Description
                           AppLargeText(
                             text: "Description",
                             color: Colors.black.withOpacity(0.8),
