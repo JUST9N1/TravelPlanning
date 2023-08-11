@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:travelplanning/Screens/BookAirlines.dart';
-import 'package:travelplanning/Screens/DetailPage.dart';
-import 'package:travelplanning/Screens/rentCar.dart';
+import 'package:travelplanning/screens/BookAirlines.dart';
+import 'package:travelplanning/screens/DetailPage.dart';
+import 'package:travelplanning/screens/rentCar.dart';
 
 class BookingPage extends StatefulWidget {
   const BookingPage({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:travelplanning/Screens/signIn.dart';
+import 'package:travelplanning/screens/signIn.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);

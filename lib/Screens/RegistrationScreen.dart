@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:travelplanning/Screens/signIn.dart';
-import 'package:travelplanning/model/user_model.dart';
+import 'package:travelplanning/screens/signIn.dart';
+import 'package:travelplanning/model/userModel.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);

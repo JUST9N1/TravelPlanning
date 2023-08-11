@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:travelplanning/Screens/navpages/my_page.dart';
-import 'package:travelplanning/Screens/navpages/search_page.dart';
+import 'package:travelplanning/screens/navpages/myPage.dart';
+import 'package:travelplanning/screens/navpages/searchPage.dart';
 
 import '../HomePage.dart';
 import 'setting.dart';
