@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:travelplanning/screens/navpages/mainPage.dart';
+import 'package:travelplanning/Screens/navpages/mainPage.dart';
 
 
 
