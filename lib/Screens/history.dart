@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class History extends StatefulWidget {
-  const History({super.key});
+ const History({super.key});
 
   @override
   State<History> createState() => _HistoryState();
@@ -17,9 +17,9 @@ class _HistoryState extends State<History> {
         clipBehavior: Clip.antiAlias,
         decoration: const BoxDecoration(color: Colors.white),
         child: Stack(
-          children: [
-            Positioned(
-              left: 0,
+        children: [
+          Positioned(
+            left: 0,
               top: 0,
               child: Container(
                 width: 428,
