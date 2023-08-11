@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:travelplanning/screens/navpages/main_page.dart';
+import 'package:travelplanning/screens/navpages/mainPage.dart';
 
 
 
 
-import 'RegistrationScreen.dart';
+import 'registrationScreen.dart';
 
 
 

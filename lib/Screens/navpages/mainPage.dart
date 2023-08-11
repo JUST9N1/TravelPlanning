@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:travelplanning/screens/navpages/myPage.dart';
 import 'package:travelplanning/screens/navpages/searchPage.dart';
 
-import '../HomePage.dart';
+import '../homePage.dart';
 import 'setting.dart';
 
 

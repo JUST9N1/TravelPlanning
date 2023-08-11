@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:travelplanning/screens/bookingPage.dart';
 
 import '../misc/colors.dart';
-import '../widgets/app_buttons.dart';
-import '../widgets/app_large_text.dart';
+import '../widgets/appButtons.dart';
+import '../widgets/appLargeText.dart';
 import '../widgets/app_text.dart';
-import '../widgets/responsive_button.dart';
-import 'navpages/main_page.dart';
+import '../widgets/responsiveButton.dart';
+import 'navpages/mainPage.dart';
 
 class DetailPage extends StatefulWidget {
   final String documentId;
