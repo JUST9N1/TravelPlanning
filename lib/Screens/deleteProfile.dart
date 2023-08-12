@@ -64,7 +64,7 @@ class DeleteAccount extends StatelessWidget {
 
                     height: 100,
 
-                    width: 100,
+                    width: 150,
 
                     child: SvgPicture.asset("img/patan-durbar.jpg"),
 
