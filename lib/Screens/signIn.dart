@@ -1,16 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:travelplanning/screens/navpages/mainPage.dart';
-import 'package:travelplanning/screens/welcomePage.dart';
-
-
-import 'registrationScreen.dart';
 
 import 'package:travelplanning/Screens/navpages/mainPage.dart';
 
 import 'registrationScreen.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -239,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
           .then((uid) => {
                 Fluttertoast.showToast(msg: "Login Successful"),
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const main_page())),
+                    MaterialPageRoute(builder: (context) => const MainPage())),
               })
 
           // ignore: body_might_complete_normally_catch_error

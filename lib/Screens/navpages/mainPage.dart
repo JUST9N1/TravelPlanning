@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:travelplanning/screens/navpages/myPage.dart';
-import 'package:travelplanning/screens/navpages/searchPage.dart';
+import 'package:travelplanning/Screens/navpages/myPage.dart';
+import 'package:travelplanning/Screens/navpages/searchPage.dart';
 
 import '../homePage.dart';
-import 'setting.dart';
+import 'barItemPage.dart';
 
 
 
@@ -19,7 +19,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   List pages = [
     const HomePage(),
-    const Settings(),
+    const BarItemPage(),
     const SearchPage(),
     const MyPage()
   ];
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
       showSelectedLabels: false,
       items: const [
         BottomNavigationBarItem( label:"Home", icon: Icon(Icons.apps)),
-        BottomNavigationBarItem(label: "Bar", icon: Icon(Icons.settings)),
+        BottomNavigationBarItem(label: "Bar", icon: Icon(Icons.bar_chart_sharp)),
         BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
         BottomNavigationBarItem(label: "My", icon: Icon(Icons.person))
       ],

@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:travelplanning/screens/bookingPage.dart';
+import 'package:travelplanning/Screens/bookingPage.dart';
 
 import '../misc/colors.dart';
 import '../widgets/appButtons.dart';
 import '../widgets/appLargeText.dart';
-import '../widgets/app_text.dart';
+import '../widgets/appText.dart';
 import '../widgets/responsiveButton.dart';
 import 'navpages/mainPage.dart';
 

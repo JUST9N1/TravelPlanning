@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:travelplanning/screens/delete.dart';
+// import 'package:travelplanning/Screens/delete.dart';
 
 
 import '../personalInfo.dart';
-
+import 'mainPage.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -110,8 +110,8 @@ class _MyPage extends State<MyPage> with TickerProviderStateMixin {
               children: [
                 TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>  DeleteAccount()));
+                      // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      //     builder: (context) =>  DeleteAccount()));
                     },
                     child: Text(
                       'Delete Account',

@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:travelplanning/screens/navpages/myPage.dart';
+import 'package:travelplanning/Screens/navpages/myPage.dart';
 
 import '../model/userModel.dart';
 
