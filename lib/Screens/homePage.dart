@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:travelplanning/Screens/navpages/searchPage.dart';
+import 'package:travelplanning/Screens/searchPage.dart';
 import 'package:travelplanning/widgets/appLargeText.dart';
 import 'package:travelplanning/widgets/appText.dart';
 import 'package:travelplanning/widgets/firebaseImages.dart';
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const SearchPage(),
+                                builder: (context) => const SearchScreen(),
                               ));
                         },
                         icon: const Icon(Icons.search)),
