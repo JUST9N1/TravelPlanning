@@ -1,16 +1,11 @@
-# travelplanning
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference
+some important links to project:
+Trello Link
+ https://trello.com/b/F4YHufte/travel-planning
+Github Link
+https://github.com/JUST9N1/TravelPlanning.git
+Google sheet Link
+https://docs.google.com/spreadsheets/d/1WTb5IdA19sy2lN-ebOsYSD78wcxcJYQCzwnScFmq6MY/edit#gid=787015161
+Figma Link
+https://www.figma.com/file/PgQDJfRHARwdI1agGzebHw/Travel-Planning-App?node-id=0%3A1&mode=dev
+Youtube Link
+https://youtu.be/PEGX_2ACHYA
