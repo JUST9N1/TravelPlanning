@@ -243,7 +243,7 @@ class _HistoryState extends State<History> {
                 height: 330,
                 decoration: ShapeDecoration(
                   image: const DecorationImage(
-                    image: AssetImage("img/patan-durbar.jpg"),
+                    image: AssetImage("img/manaslu.jpeg"),
                     fit: BoxFit.fill,
                   ),
                   shape: RoundedRectangleBorder(
