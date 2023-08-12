@@ -275,7 +275,6 @@ class DeleteAccount extends StatelessWidget {
 
       } else {
 
-        // Other errors
 
         print("Error deleting user account: ${e.message}");
 
