@@ -4,6 +4,7 @@ import 'package:travelplanning/Screens/homePage.dart';
 import 'package:travelplanning/Screens/finalPayment.dart';
 import 'package:travelplanning/Screens/navpages/mainPage.dart';
 import 'package:travelplanning/Screens/payment.dart';
+import 'package:travelplanning/Screens/signIn.dart';
 import 'package:travelplanning/Screens/welcomePage.dart';
 
 Future<void> main() async {
@@ -25,6 +26,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: FinalPayment());
+        home: LoginPage());
   }
 }

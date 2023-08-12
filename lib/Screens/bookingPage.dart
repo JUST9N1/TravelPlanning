@@ -112,26 +112,6 @@ class _BookingPageState extends State<BookingPage>
     TabController tabController = TabController(length: 4, vsync: this);
 
     return Scaffold(
-        // bottomNavigationBar: BottomNavigationBar(
-        //   currentIndex: _currentIndex,
-        //   onTap: (int index) {
-        //     setState(() {
-        //       _currentIndex = index;
-        //     });
-        //   },
-        //   selectedItemColor: Colors.red,
-        //   unselectedItemColor: Colors.black,
-        //   showUnselectedLabels: false,
-        //   showSelectedLabels: false,
-        //   items: const [
-        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(Icons.favorite), label: "Favorite"),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(Icons.settings), label: "Settings"),
-        //     BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
-        //   ],
-        // ),
         body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: SizedBox(
@@ -157,7 +137,7 @@ class _BookingPageState extends State<BookingPage>
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const DetailPage(documentId: '',)));
+                                          const DetailPage(documentId: '')));
                             },
                             icon: const Icon(Icons.arrow_back),
                           )
