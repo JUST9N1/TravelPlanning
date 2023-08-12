@@ -9,6 +9,3 @@ Figma Link
 https://www.figma.com/file/PgQDJfRHARwdI1agGzebHw/Travel-Planning-App?node-id=0%3A1&mode=dev
 Youtube Link
 https://youtu.be/PEGX_2ACHYA
-
-
-
