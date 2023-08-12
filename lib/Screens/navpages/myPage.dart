@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:travelplanning/Screens/history.dart';
+
 // import 'package:travelplanning/Screens/delete.dart';
 
-
 import '../personalInfo.dart';
-import 'mainPage.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class _MyPage extends State<MyPage> with TickerProviderStateMixin {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>  PersonalInfo()));
+                          builder: (context) => PersonalInfo()));
                     },
                     child: Text(
                       'Personal Information',
@@ -67,7 +67,13 @@ class _MyPage extends State<MyPage> with TickerProviderStateMixin {
             child: Column(
               children: [
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const History(),
+                        ),
+                      );
+                    },
                     child: Text(
                       'History',
                       style: TextStyle(
