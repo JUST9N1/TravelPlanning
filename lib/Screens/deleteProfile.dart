@@ -87,7 +87,19 @@ class DeleteAccount extends StatelessWidget {
                     child: TextField(
 
                       controller: email,
+                      decoration: InputDecoration(
 
+                      hintText: 'Email',
+
+                      hintStyle: TextStyle(color: Colors.white),
+
+                      enabledBorder: OutlineInputBorder(
+
+                      borderRadius: BorderRadius.circular(10.0),
+
+                      borderSide: BorderSide(color: Colors.white),
+
+                      ),
                     ),
 
                   SizedBox(height: 20),
