@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:travelplanning/Screens/navpages/my_page.dart';
+import 'package:travelplanning/Screens/navpages/myPage.dart';
 
-import '../model/user_model.dart';
+import '../model/userModel.dart';
 
 class PersonalInfo extends StatefulWidget {
   const PersonalInfo({Key? key}) : super(key: key);

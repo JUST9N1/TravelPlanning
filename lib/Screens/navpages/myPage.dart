@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 import '../personalInfo.dart';
-import 'main_page.dart';
+import 'mainPage.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);

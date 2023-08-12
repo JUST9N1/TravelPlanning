@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:travelplanning/Screens/navpages/my_page.dart';
-import 'package:travelplanning/Screens/navpages/search_page.dart';
+import 'package:travelplanning/Screens/navpages/myPage.dart';
+import 'package:travelplanning/Screens/navpages/searchPage.dart';
 
 import '../homePage.dart';
-import 'bar_item_page.dart';
+import 'barItemPage.dart';
 
 
 

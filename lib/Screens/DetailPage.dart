@@ -7,7 +7,7 @@ import '../widgets/appButtons.dart';
 import '../widgets/appLargeText.dart';
 import '../widgets/appText.dart';
 import '../widgets/responsiveButton.dart';
-import 'navpages/main_page.dart';
+import 'navpages/mainPage.dart';
 
 class DetailPage extends StatefulWidget {
   final String documentId;

@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:travelplanning/Screens/homePage.dart';
 import 'package:travelplanning/Screens/finalPayment.dart';
-import 'package:travelplanning/Screens/navpages/main_page.dart';
+import 'package:travelplanning/Screens/navpages/mainPage.dart';
 import 'package:travelplanning/Screens/payment.dart';
 import 'package:travelplanning/Screens/welcomePage.dart';
 

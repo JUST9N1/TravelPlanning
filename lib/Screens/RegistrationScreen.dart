@@ -10,7 +10,7 @@ import 'package:travelplanning/Screens/homePage.dart';
 
 import 'package:travelplanning/Screens/signIn.dart';
 
-import 'package:travelplanning/model/user_model.dart';
+import 'package:travelplanning/model/userModel.dart';
 
 
 
