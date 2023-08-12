@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelplanning/Screens/bookingPage.dart';
+import 'package:travelplanning/Screens/payment.dart';
 // import 'package:travelplanning/Screens/Payment.dart';
 
 class FinalPayment extends StatelessWidget {
@@ -23,12 +25,16 @@ class FinalPayment extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const BookingPage()));
+                        },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                         ),
                         child: const Text(
-                          '🡠',
+                          '<--',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 30,
@@ -106,11 +112,11 @@ class FinalPayment extends StatelessWidget {
                     height: 48,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.pushAndRemoveUntil(
-                        //     (context),
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const Payment()),
-                        //     (route) => false);
+                        Navigator.pushAndRemoveUntil(
+                            (context),
+                            MaterialPageRoute(
+                                builder: (context) => const Payment()),
+                            (route) => false);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(

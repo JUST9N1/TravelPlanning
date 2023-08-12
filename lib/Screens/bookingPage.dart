@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:travelplanning/Screens/bookAirlines.dart';
 import 'package:travelplanning/Screens/detailPage.dart';
+import 'package:travelplanning/Screens/finalPayment.dart';
+import 'package:travelplanning/Screens/payment.dart';
 import 'package:travelplanning/Screens/rentCar.dart';
 
 class BookingPage extends StatefulWidget {
@@ -395,7 +397,6 @@ class _BookingPageState extends State<BookingPage>
                                   height: 15,
                                 ),
                                 Column(
-                                  
                                   children: [
                                     const Text(
                                       'Choose your travelling preferences: ',
@@ -410,12 +411,10 @@ class _BookingPageState extends State<BookingPage>
                                       children: [
                                         ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            foregroundColor: Colors.grey,
-                                            backgroundColor:
-                                                const Color(0xFFFFF9C4),
-                                                minimumSize: Size(150, 50)
-                                                
-                                          ),
+                                              foregroundColor: Colors.grey,
+                                              backgroundColor:
+                                                  const Color(0xFFFFF9C4),
+                                              minimumSize: Size(150, 50)),
                                           onPressed: () {
                                             Navigator.of(context)
                                                 .pushReplacement(
@@ -434,11 +433,10 @@ class _BookingPageState extends State<BookingPage>
                                         const SizedBox(width: 50),
                                         ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            foregroundColor: Colors.grey,
-                                            backgroundColor:
-                                                const Color(0xFFFFF9C4),
-                                                minimumSize: Size(150, 50)
-                                          ),
+                                              foregroundColor: Colors.grey,
+                                              backgroundColor:
+                                                  const Color(0xFFFFF9C4),
+                                              minimumSize: Size(150, 50)),
                                           onPressed: () {
                                             Navigator.of(context)
                                                 .pushReplacement(
@@ -475,6 +473,10 @@ class _BookingPageState extends State<BookingPage>
                                             const SnackBar(
                                                 content: Text("Registered")),
                                           );
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const FinalPayment()));
                                         },
                                         child: const Text(
                                           "Book Now",
