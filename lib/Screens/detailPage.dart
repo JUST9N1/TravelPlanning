@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelplanning/Screens/bookingPage.dart';
+import 'package:travelplanning/Screens/navpages/favoritePage.dart';
 
 import '../misc/colors.dart';
 import '../widgets/appButtons.dart';
@@ -230,12 +231,13 @@ class _DetailPageState extends State<DetailPage> {
                             borderColor: AppColors.textColor2,
                             isIcon: true,
                             icon: Icons.favorite_border,
+                            
                           ),
                           const SizedBox(
                             width: 20,
                           ),
-                          ResponsiveButton(
-                            isResponsive: true,
+                            ResponsiveButton(
+                              isResponsive: true,
                           ),
                         ],
                       ),
