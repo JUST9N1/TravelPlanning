@@ -4,7 +4,7 @@ import 'package:travelplanning/Screens/navpages/myPage.dart';
 import 'package:travelplanning/Screens/navpages/searchPage.dart';
 
 import '../homePage.dart';
-import 'barItemPage.dart';
+import 'favoritePage.dart';
 
 
 

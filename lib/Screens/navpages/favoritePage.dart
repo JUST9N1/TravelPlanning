@@ -8,7 +8,7 @@ class BarItemPage extends StatelessWidget {
     return Container(
       child: const Center(
         child: Text(
-          "Bar Item Page"
+          "No Favorite Item to show!!"
         ),
       ),
     );
