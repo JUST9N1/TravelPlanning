@@ -108,6 +108,11 @@ class DeleteAccount extends StatelessWidget {
                       borderSide: BorderSide(color: Colors.blue),
 
                       ),
+                        isDense: true,
+
+                        contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+
+                      ),
                     ),
 
                   SizedBox(height: 20),
