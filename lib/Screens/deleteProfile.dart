@@ -84,7 +84,11 @@ class DeleteAccount extends StatelessWidget {
 
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  ),
+                    child: TextField(
+
+                      controller: email,
+
+                    ),
 
                   SizedBox(height: 20),
 
