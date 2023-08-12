@@ -83,40 +83,48 @@ class DeleteAccount extends StatelessWidget {
                   SizedBox(height: 20),
 
                   Padding(
+
                     padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+
                     child: TextField(
 
                       controller: email,
+
                       decoration: InputDecoration(
 
-                      hintText: 'Email',
+                        hintText: 'Email',
 
-                      hintStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white),
 
-                      enabledBorder: OutlineInputBorder(
+                        enabledBorder: OutlineInputBorder(
 
-                      borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(10.0),
 
-                      borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.white),
 
-                      ),
+                        ),
 
-                      focusedBorder: OutlineInputBorder(
+                        focusedBorder: OutlineInputBorder(
 
-                      borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(10.0),
 
-                      borderSide: BorderSide(color: Colors.blue),
+                          borderSide: BorderSide(color: Colors.blue),
 
-                      ),
+                        ),
+
                         isDense: true,
-                        contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
-                      ),
-                        cursorColor: Colors.white,
 
-                        style: TextStyle(color: Colors.white),
+                        contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+
                       ),
+
+                      cursorColor: Colors.white,
+
+                      style: TextStyle(color: Colors.white),
+
                     ),
 
+                  ),
                   SizedBox(height: 20),
 
                   Padding(
