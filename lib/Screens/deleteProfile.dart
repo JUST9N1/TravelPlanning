@@ -109,9 +109,11 @@ class DeleteAccount extends StatelessWidget {
 
                       ),
                         isDense: true,
-
                         contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                      ),
+                        cursorColor: Colors.white,
 
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
 
