@@ -182,15 +182,15 @@ class DeleteAccount extends StatelessWidget {
 
                       _deleteAccount(context, email.text, pass.text);
 
-                      // Navigator.pushReplacement(
+                      Navigator.pushReplacement(
 
-                      //   context,
+                        context,
 
-                      //   MaterialPageRoute(
+                        MaterialPageRoute(
 
-                      //       builder: (context) => const LoginPage()),
+                            builder: (context) => const LoginPage()),
 
-                      // );
+                      );
 
                     },
 
