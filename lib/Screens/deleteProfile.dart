@@ -76,7 +76,7 @@ class DeleteAccount extends StatelessWidget {
 
                     "Delete Account",
 
-                    style: TextStyle(color: Colors.white, fontSize: 30),
+                    style: TextStyle(color: Colors.white, fontSize: 20),
 
                   ),
 
