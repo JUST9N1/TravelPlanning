@@ -6,7 +6,7 @@ import 'package:travelplanning/Screens/navpages/searchPage.dart';
 import 'package:travelplanning/Screens/searchPage.dart';
 import 'package:travelplanning/widgets/appLargeText.dart';
 import 'package:travelplanning/widgets/appText.dart';
-import 'package:travelplanning/widgets/firebaseImages.dart';
+import 'package:travelplanning/controller/firebaseImages.dart';
 
 import '../misc/colors.dart';
 import '../model/userModel.dart';
