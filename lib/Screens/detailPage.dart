@@ -88,6 +88,7 @@ class _DetailPageState extends State<DetailPage> {
                           topRight: Radius.circular(20),
                         ),
                       ),
+                      // Dynamic
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -194,6 +195,7 @@ class _DetailPageState extends State<DetailPage> {
                           const SizedBox(
                             height: 10,
                           ),
+                          //description
                           AppLargeText(
                             text: "Description",
                             color: Colors.black.withOpacity(0.8),
