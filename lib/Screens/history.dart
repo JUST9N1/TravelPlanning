@@ -151,7 +151,7 @@ class _HistoryState extends State<History> {
                     Positioned(
                       left: 32,
                       top: 235,
-                      child: Container(
+                      child: SizedBox(
                         width: 134,
                         height: 37.31,
                         child: Stack(
